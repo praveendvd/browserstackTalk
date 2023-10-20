@@ -58,35 +58,24 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [ 
+    capabilities: [
         {
-            browserName: 'chrome',
-            specs: [
-                './features_web/**/*.feature'
-            ],
-            port:9515,
-            "appium:app":undefined
-        },
-        {
-            browserName: 'chrome',
-            "goog:chromeOptions": { binary: 'node_modules/electron/dist/Electron.app/Contents/MacOS/Electron', args: ["app=./electron-sample-apps-master/printing"] }
-            // "goog:chromeOptions": { binary: 'C:/Users/s2cn/AppData/Local/Postman/Postman.exe' }
-            , specs: [
-                './features_electron/**/*.feature'
-            ],
-        },
-        {
+            browserName: 'Firefox',
             'bstack:options': {
-                deviceName: "iPhone 11 Pro",
-                osVersion: "13",
+                browserVersion: '102.0',
+                os: 'Windows',
+                osVersion: '10',
                 projectName: "Praveen BrowserStack Samples",
                 buildName: 'Praveen browserstack build',
                 sessionName: 'Praveen BStack',
                 debug: true,
-                networkLogs: true
+                networkLogs: true,
+                localIdentifier: 'randomstring2',
+                buildIdentifier: '2'
             },
-            specs: ['./features_appium/*.feature'],
+            specs: ['./features_web/*.feature'],
             hostname: 'hub.browserstack.com',
+
         }
     ],
 
@@ -123,7 +112,7 @@ export const config: Options.Testrunner = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'silent',
+    logLevel: 'info',
     //
     // Set specific log levels per logger
     // loggers:
@@ -167,11 +156,22 @@ export const config: Options.Testrunner = {
     key: "pJnAj7DihD1R2xDZngSM",
     services: ['chromedriver',
         ['browserstack', {
-
+            
             testObservability: true,
             browserstackLocal: true,
-            app: './examples/BStackSampleApp.ipa'
+            buildIdentifier: '2',
+            opts: { localIdentifier: "randomstring2" , verbose:true}
+
+        }],
+        ['browserstack', {
+            buildIdentifier: '1',
+            testObservability: true,
+            browserstackLocal: true,
+        
+            app: "./examples/BStackSampleApp.ipa",
+            opts: { localIdentifier: "randomstring", parallelRuns: "2" , verbose:true}
         }]],
+
 
 
     // Framework you want to run your specs with.
