@@ -58,25 +58,27 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [
-        {
-            browserName: 'Firefox',
-            'bstack:options': {
-                browserVersion: '102.0',
-                os: 'Windows',
-                osVersion: '10',
-                projectName: "Praveen BrowserStack Samples",
-                buildName: 'Praveen browserstack build',
-                sessionName: 'Praveen BStack',
-                debug: true,
-                networkLogs: true,
-                localIdentifier: 'randomstring2',
-                buildIdentifier: '2'
-            },
-            specs: ['./features_web/*.feature'],
-            hostname: 'hub.browserstack.com',
+    capabilities: [{
+        browserName: 'Firefox',
+        'bstack:options': {
 
-        }
+            os: 'Windows',
+            osVersion: '10',
+            projectName: 'Praveen BrowserStack Samples2',
+            buildName: 'Praveen browserstack build2',
+            buildTag: 's',
+            debug: true,
+            networkLogs: true,
+            buildIdentifier:"2"
+        },
+        specs: [
+            './features_web/**/*.feature'
+        ],
+        "appium:app": undefined
+
+    },
+
+
     ],
 
 
@@ -156,20 +158,27 @@ export const config: Options.Testrunner = {
     key: "pJnAj7DihD1R2xDZngSM",
     services: ['chromedriver',
         ['browserstack', {
-            
+
             testObservability: true,
             browserstackLocal: true,
             buildIdentifier: '2',
-            opts: { localIdentifier: "randomstring2" , verbose:true}
+            testObservabilityOptions: {
+                projectName: 'Praveen BrowserStack Samples2',
+                buildName: 'Praveen browserstack build2',
+                buildTag: ['s'],
+            },
+            app: "./examples/BStackSampleApp.ipa",
+
+            opts: { localIdentifier: "randomstring2", verbose: true }
 
         }],
         ['browserstack', {
             buildIdentifier: '1',
             testObservability: true,
             browserstackLocal: true,
-        
-            app: "./examples/BStackSampleApp.ipa",
-            opts: { localIdentifier: "randomstring", parallelRuns: "2" , verbose:true}
+
+   
+            opts: { localIdentifier: "randomstring", parallelRuns: "2", verbose: true }
         }]],
 
 
